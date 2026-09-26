@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Неделя</string>
+    <string name="widget_description">Ближайшие 7 дней из календаря</string>
+</resources>

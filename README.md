@@ -6,22 +6,31 @@
 
 ## Как собрать
 
-1. Android Studio → New Project → **Empty Activity** (шаблон с Compose).
-   Name: `WeekWidget`, Package: `com.anton.weekwidget`, Language: Kotlin, Minimum SDK: **API 26**.
-2. В `app/build.gradle.kts`: `minSdk = 26`, и в `dependencies { }` добавить:
+**Готовый APK** — в [Releases](../../releases): GitHub Actions собирает и публикует его
+на каждый push в `main`. Новые версии ставятся поверх старых (одинаковый ключ подписи,
+`versionCode` = номер запуска workflow).
 
-   ```kotlin
-   implementation("androidx.glance:glance-appwidget:1.1.1")
-   implementation("androidx.work:work-runtime-ktx:2.10.0")
-   implementation("androidx.datastore:datastore-preferences-core:1.1.1")
-   ```
+**Локально:** откройте папку в Android Studio или выполните `./gradlew assembleDebug`
+(нужны JDK 17 и Android SDK). Release-сборка без ключа подписывается debug-ключом.
 
-   Если Studio подсветит более новые версии — смело обновляйте.
-3. Скопировать папку `app/src/main` из архива поверх созданной проектом
-   (заменит `MainActivity.kt`, `AndroidManifest.xml`, `strings.xml`).
-   Удалить папку `ui/theme` из шаблона, если она мешает сборке, — она не используется.
-4. На телефоне включить отладку по USB, нажать Run, выдать доступ к календарю,
-   добавить виджет «Неделя» на главный экран.
+На телефоне: открыть приложение «Неделя», выдать доступ к календарю,
+добавить виджет «Неделя» на главный экран.
+
+### Подпись в CI
+
+Workflow `.github/workflows/release.yml` берёт ключ из секретов репозитория
+(Settings → Secrets and variables → Actions):
+
+| Секрет | Что это |
+|---|---|
+| `SIGNING_KEYSTORE_BASE64` | keystore (`.jks`), закодированный в base64: `base64 -w0 release.jks` |
+| `SIGNING_STORE_PASSWORD` | пароль keystore |
+| `SIGNING_KEY_ALIAS` | alias ключа |
+| `SIGNING_KEY_PASSWORD` | пароль ключа |
+
+Без секретов сборка в `main` падает — чтобы не опубликовать APK с чужой подписью.
+На остальных ветках APK собирается как проверка и лежит в артефактах запуска.
+Сам keystore в репозиторий не коммитится (`*.jks` в `.gitignore`) — храните его копию отдельно.
 
 ## Что где
 

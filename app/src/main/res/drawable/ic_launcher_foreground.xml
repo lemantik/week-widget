@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Семь колонок убывающей ширины, как в виджете -->
+    <path android:fillColor="#FFFFFF" android:pathData="M27,36h12v36h-12z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M41,36h9v36h-9z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M52,36h7v36h-7z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M61,36h5v36h-5z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M68,36h4v36h-4z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M74,36h3v36h-3z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M79,36h3v36h-3z" />
+</vector>
