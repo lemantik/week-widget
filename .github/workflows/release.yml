@@ -3,6 +3,8 @@ name: Build & Release APK
 on:
   push:
     branches: ["**"]   # сборка на любой ветке, публикация — только из main
+    paths-ignore:
+      - "**.md"         # правки документации не выпускают новую версию
   workflow_dispatch:
 
 permissions:
